@@ -15,20 +15,20 @@ public class CocktailStepdefs {
 
     private Order order;
 
-    @Given("^Romeo who wants to buy a drink$")
-    public void romeoWhoWantsToBuyADrink() throws Throwable {
+    @Given("^(.*) who wants to buy a drink$")
+    public void romeoWhoWantsToBuyADrink(String owner) throws Throwable {
         order = new Order();
-        order.declareOwner("romeo");
+        order.declareOwner(owner);
     }
 
-    @When("^an order is declared for Juliette$")
-    public void anOrderIsDeclaredForJuliette() throws Throwable {
-        order.declareTarget("juliette");
+    @When("^an order is declared for (.*)$")
+    public void anOrderIsDeclaredForJuliette(String target) throws Throwable {
+        order.declareTarget(target);
     }
 
-    @Then("^there is no cocktail in the order$")
-    public void thereIsNoCocktailInTheOrder() throws Throwable {
+    @Then("^there is (\\d) cocktail in the order$")
+    public void thereIsNoCocktailInTheOrder(int cocktailsNumber) throws Throwable {
         List<String> cocktails = order.getCocktails();
-        assertThat(cocktails).isEmpty();
+        assertThat(cocktails.size()).isEqualTo(cocktailsNumber);
     }
 }
