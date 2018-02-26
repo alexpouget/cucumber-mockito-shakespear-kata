@@ -9,6 +9,7 @@ public class Order {
     private String owner;
     private String target;
     private String message;
+    private Menu menu;
 
     public void declareOwner(String romeo) {
         owner = romeo;
@@ -37,5 +38,13 @@ public class Order {
 
     public void withMessage(String message) {
         this.message =  message;
+    }
+
+    public void addMenu(Menu menu) {
+        this.menu = menu;
+    }
+
+    public void addCocktails(int id) {
+        cocktails.add(menu.getPrettyName(id));
     }
 }

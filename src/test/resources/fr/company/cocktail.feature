@@ -16,7 +16,7 @@ Feature: Cocktail ordering
 
   Scenario: Creating an empty order
     When  an order is declared for Juliette
-    Then  there is 0 cocktail in the order
+    Then  there is 0 cocktails in the order
 
   Scenario Outline: Sending a message with an order
     When  an order is declared for <to>
@@ -29,3 +29,9 @@ Feature: Cocktail ordering
       | Jerry    | Hei!        | From Romeo to Jerry: Hei!           |
     # ...
 
+  Scenario: Offering a mojito to Juliette
+    When a mocked menu is used
+    And the mock binds #42 to mojito
+    And a cocktail #42 is added to the order
+    Then there is 1 cocktails in the order
+    And  the order contains a mojito
